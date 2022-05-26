@@ -1,12 +1,9 @@
 const { Client } = require('pg');
 
-const client = new Client({
-    host: "localhost",
-    port: 5432,
-    database: "FeedMer",
-    user: "test",
-    password: "test"
-});
+let connection_options = {
+    connectionString: process.env.DB_URL,
+}
+const client = new Client(connection_options);
 
 module.exports = {
 
