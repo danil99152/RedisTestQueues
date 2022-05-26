@@ -1,6 +1,6 @@
-const Redis = require("ioredis");
+const db = require('./DBlib');
 
-async function startFunc(client, events){
+async function startFunc(events){
     events.forEach(function (value, i) {
         let time = value.time;
         let seconds = value.seconds;
@@ -18,20 +18,18 @@ async function startFunc(client, events){
             return
         }
         setTimeout(() => {
-            client.set(`func${i}`, JSON.stringify({func: func, params: params}));
-            // client.set('params', JSON.stringify(params));
+            db.addTask(`func${i}`, JSON.stringify({func: func, params: params}));
         }, ms)
     });
 }
 
 async function getRedis() {
-    const client = new Redis({port: process.env.REDIS_PORT, host: process.env.REDIS_IP});
     let events = [
-        {time: "17:50", seconds: 10, function: 'hello', parameters: {hello: "hello World!"}},
-        {time: "17:50", seconds: 5, function: 'test', parameters: {a: 1, b: 2}},
-        {time: "17:50", seconds: 5, function: 'justTest'}
+        {time: "20:07", seconds: 10, function: 'hello', parameters: {hello: "hello World!"}},
+        {time: "20:07", seconds: 5, function: 'test', parameters: {a: 1, b: 2}},
+        {time: "20:07", seconds: 5, function: 'justTest'}
     ]
-    await startFunc(client, events);
+    await startFunc(events);
 }
 
 getRedis();
