@@ -6,10 +6,9 @@ let connection_options = {
 const client = new Client(connection_options);
 
 module.exports = {
-
     async addTask(func, params) {
         try {
-            arr = [func, params, false]
+            const arr = [func, params, false]
             let sql = 'INSERT INTO tasks (func, parameters, is_done) ' +
                 'VALUES ($1, $2, $3);';
             await client.query(sql, arr);

@@ -1,7 +1,7 @@
 const db = require('./DBlib');
 
 async function startFunc(events){
-    events.forEach(function (value, i) {
+    events.forEach(function (value) {
         let time = value.time;
         let seconds = value.seconds;
         let func = value.function;
@@ -25,9 +25,9 @@ async function startFunc(events){
 
 async function getRedis() {
     let events = [
-        {time: "23:46", seconds: 10, function: 'hello', parameters: {hello: "hello World!"}},
-        {time: "23:46", seconds: 5, function: 'test', parameters: {a: 1, b: 2}},
-        {time: "23:46", seconds: 15, function: 'justTest'}
+        {time: "01:34", seconds: 10, function: 'hello', parameters: {hello: "hello World!"}},
+        {time: "01:34", seconds: 5, function: 'test', parameters: {a: 1, b: 2}},
+        {time: "01:34", seconds: 15, function: 'justTest'}
     ]
     await startFunc(events);
 }
