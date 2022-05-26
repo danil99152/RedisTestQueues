@@ -18,16 +18,16 @@ async function startFunc(events){
             return
         }
         setTimeout(() => {
-            db.addTask(`func${i}`, JSON.stringify({func: func, params: params}));
+            db.addTask(func, params);
         }, ms)
     });
 }
 
 async function getRedis() {
     let events = [
-        {time: "20:07", seconds: 10, function: 'hello', parameters: {hello: "hello World!"}},
-        {time: "20:07", seconds: 5, function: 'test', parameters: {a: 1, b: 2}},
-        {time: "20:07", seconds: 5, function: 'justTest'}
+        {time: "23:46", seconds: 10, function: 'hello', parameters: {hello: "hello World!"}},
+        {time: "23:46", seconds: 5, function: 'test', parameters: {a: 1, b: 2}},
+        {time: "23:46", seconds: 15, function: 'justTest'}
     ]
     await startFunc(events);
 }
